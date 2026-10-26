@@ -2,18 +2,18 @@
   <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/panes-logo.png" alt="格窗图标" width="160">
 </p>
 
-<h1 align="center">格窗</h1>
+<h1 align="center">格窗工作台</h1>
 
 <p align="center">一扇窗，几件事。</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/ColorOS-17-1F5CDE?style=flat" alt="ColorOS 17">
+  <img src="https://img.shields.io/badge/ColorOS-16%20%7C%2017-1F5CDE?style=flat" alt="ColorOS 16 | 17">
   <img src="https://img.shields.io/github/v/release/yishisanren/NeXtep?display_name=tag&sort=semver" alt="最新版本">
   <img src="https://img.shields.io/badge/LSPosed-Required-C62828?style=flat" alt="需要 LSPosed">
   <img src="https://img.shields.io/badge/License-Apache--2.0-blue?style=flat" alt="Apache-2.0">
 </p>
 
-格窗是一个 LSPosed 模块，给 ColorOS 17 的原生桌面加一个侧边工作台：一个大窗做事，四个小窗候着，常用的都放在手边。不替换桌面，不改系统主题，退出后手机回到原样。
+格窗工作台是一个 LSPosed 模块，给 ColorOS 16 和 17 的原生桌面加一个侧边工作台：一个大窗做事，四个小窗候着，常用的都放在手边。不替换桌面，不改系统主题，退出后手机回到原样。
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/overview.gif" alt="底角斜滑打开工作台，再斜滑一次关闭" width="300">
@@ -23,15 +23,21 @@
 
 ### 一个大窗，四个小窗
 
-大窗是你正在用的应用，侧栏四个小窗是四个真实运行中的应用，各自跑在独立的虚拟显示器上，不是截图。点一下小窗，它和大窗原地对调，画面等比缩放，不拉伸、不裁切；长按拖动可以换位置，或者把应用退到后台。
+大窗是你正在用的应用，侧栏四个小窗是四个真实运行中的应用，各自跑在独立的虚拟显示器上，不是截图。点一下小窗，它和大窗原地对调，画面等比缩放，不拉伸；长按拖动可以换位置，或者把应用退到后台。大窗只留应用顶部状态栏空白的一小段做间隔，其余空间给顶栏；手势导航时大窗和小窗底部留出手势区。隐藏状态栏的全屏应用整屏显示，不裁。
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/swap.gif" alt="点小窗与大窗对调，再换回来" width="300">
 </p>
 
+### 小窗省电
+
+侧边小窗的显示器按 30 帧刷新，小窗里看不出差别；应用换到大窗就回到满帧。不需要实时画面的应用（购物、外卖、阅读、文档之类）可以在设置的「暂停应用」里打开，或者长按小窗、不拖动直接松手，选「暂停应用」。打开后，它放进小窗、停手 2 秒就暂停：画面停在最后一帧，右上角出现暂停标记，应用不再运行；点一下小窗，它回到大窗，立即恢复。默认一个都不暂停；正在播放音视频、正在通话或在顶部宽窗里时也不会暂停。
+
 ### 常用应用栏
 
 顶部一排常用应用：设置里固定的排在最前面（数量不限），其余按最近七天的使用时间补齐到十个。点图标在大窗打开；长按拖到某个小窗，就在那个小窗打开。空小窗上的「＋」也能加应用：原来的大窗应用先收进这个小窗，回到桌面挑一个新应用放进大窗。
+
+不管从哪里打开应用（顶栏、通知、控制中心、状态栏、别的应用里的链接），它都进大窗，原来的大窗应用自动缩进一个空小窗；四个小窗都满时原应用退到后台。不想要可以在设置里关掉「打开新应用时缩小原应用」。
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/favorites.gif" alt="点常用栏图标在大窗打开，长按拖进小窗" width="300">
@@ -87,21 +93,21 @@
 
 ## 使用要求
 
-- ColorOS 17（Android 17）。在 OPPO Find X9s Pro（PME110）上开发和验证；其他机型和 ROM 需要自行适配，未经测试不保证兼容。
+- ColorOS 16 和 17。在 OPPO、一加、realme 的机型上测试过；其他 ROM 需要自行适配，未经测试不保证兼容。
 - Root（KernelSU 等）、Zygisk 与 LSPosed（支持 libxposed 新 API）。
 - 本模块会修改 SystemUI、桌面和 system_server 的行为，请确保设备有可用的恢复手段。
 
 ## 安装
 
 1. 从 [Releases](https://github.com/yishisanren/NeXtep/releases) 下载 APK 并安装（包名 `io.github.yishisanren.panes`）。
-2. 在 LSPosed 中启用「格窗」，勾选内置[作用域列表](https://github.com/yishisanren/NeXtep/blob/main/app/src/main/resources/META-INF/xposed/scope.list)里适用于本机的全部项目：SystemUI、系统框架、桌面、应用分身服务、负一屏。
+2. 在 LSPosed 中启用「格窗工作台」，勾选内置[作用域列表](https://github.com/yishisanren/NeXtep/blob/main/app/src/main/resources/META-INF/xposed/scope.list)里适用于本机的全部项目：SystemUI、系统框架、桌面、应用分身服务、负一屏。
 3. 如果以前装过 NeXtep（包名 `io.github.lujinxin.nextep`），先在 LSPosed 里停用并卸载它，两个模块不能同时钩住 SystemUI。
 4. 重启手机。
 5. 打开「格窗」，选常用应用，添加控制中心开关。
 
 ## 打开与关闭
 
-- **底角手势**：单指从左下角向右上、或右下角向左上斜滑，打开；工作台里再斜滑一次，关闭。起点在距底边和侧边各 96 dp 的角落内，向内、向上各滑 24 dp 以上；直上滑（系统主页手势）和水平滑（系统返回手势）不会触发。
+- **底角手势**：单指从左下角向右上、或右下角向左上斜滑，打开；工作台里再斜滑一次，关闭。起点在距底边和侧边各 64 dp 的角落内，沿接近 45° 的斜线向内、向上各滑 24 dp 以上；直上滑或略偏的上滑（系统主页手势）和水平滑（系统返回手势）不会触发。
 - **控制中心开关**：设置页「打开方式 → 控制中心入口」添加，下拉控制中心点「格窗」切换。
 - **设置页**：「遇到问题 → 退出小窗模式」。
 - **Shell 命令**（自动化工具用，需 Root）：见 [docs/WORKBENCH.md](https://github.com/yishisanren/NeXtep/blob/main/docs/WORKBENCH.md#shell-命令)。
@@ -115,17 +121,18 @@
 | 常用应用 | 选择和排序常用栏的应用；切换时收起上一个应用 |
 | 工作场景 | 查看、删除场景，添加到桌面，恢复被删的默认场景 |
 | 布局 | 跟随系统／浅色／深色，小窗靠左／靠右，控制区顶部／底部 |
+| 暂停应用 | 选择在小窗里停手 2 秒后暂停的应用，附推荐名单 |
 | 打开方式 | 控制中心开关、底角手势 |
-| 隐私 | 最近任务里隐藏工作台应用，本次允许截图／录屏 |
+| 隐私 | 最近任务里隐藏工作台应用 |
 | 遇到问题 | 导出诊断、退出小窗模式 |
 | 关于 | 版本、检查更新、署名 |
 
 ## 隐私与限制
 
-- 工作台默认禁止截图和录屏，可以在设置里「本次允许」，退出、锁屏或打开设置后恢复禁止。
+- 工作台可以正常截图和录屏。
 - 打开「最近任务隐藏」后，工作台里的应用不出现在最近任务里，退出工作台即恢复。
 - 应用自己的安全保护（付款码、DRM 视频、企业策略等）照常生效，格窗不会解除。
-- 诊断导出只保存模块最近 128 条事件，不含搜索词、链接、账户和画面。
+- 诊断导出保存模块最近 2000 条操作和状态记录（打开、关闭、切换、应用进出小窗等），不含搜索词、链接、账户和画面。
 - 横屏视频的识别依赖应用和系统：静音、没有媒体会话的竖屏播放器可能认不出来。
 
 ## 构建
