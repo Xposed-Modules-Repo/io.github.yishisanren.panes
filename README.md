@@ -1,166 +1,125 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/panes-logo.png" alt="格窗图标" width="160">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/panes-logo.png" alt="格窗图标" width="160">
 </p>
 
 <h1 align="center">格窗工作台</h1>
 
-<p align="center">一扇窗，几件事。</p>
+<p align="center">一个大窗做事，四个小窗随时切换。</p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/HyperOS-supported-FF6900?style=flat" alt="小米澎湃 OS">
   <img src="https://img.shields.io/badge/ColorOS-16%20%7C%2017-1F5CDE?style=flat" alt="ColorOS 16 | 17">
-  <img src="https://img.shields.io/badge/HyperOS-supported-FF6900?style=flat" alt="澎湃 OS">
-  <img src="https://img.shields.io/github/v/release/yishisanren/NeXtep?display_name=tag&sort=semver" alt="最新版本">
+  <img src="https://img.shields.io/badge/AOSP--based-installable-3DDC84?style=flat" alt="类原生">
   <img src="https://img.shields.io/badge/LSPosed-Required-C62828?style=flat" alt="需要 LSPosed">
-  <img src="https://img.shields.io/badge/License-Apache--2.0-blue?style=flat" alt="Apache-2.0">
 </p>
 
-格窗工作台是一个 LSPosed 模块，给 ColorOS 16、17 和小米澎湃 OS（HyperOS）的原生桌面加一个侧边工作台：一个大窗做事，四个小窗候着，常用的都放在手边。不替换桌面，不改系统主题，退出后手机回到原样。
+格窗工作台是一个 LSPosed 模块，给手机原生桌面加一个侧边工作台：一个大窗做事，旁边四个小窗都是真实运行的应用，点一下就和大窗互换。不换桌面，不改主题，关掉工作台，手机就回到原样。
+
+## 支持的系统
+
+- **小米澎湃 OS**：重点适配。大小窗交换、状态栏、桌面和最近任务、负一屏、横屏视频圆角都做了专门处理。
+- **ColorOS 16、17**（OPPO、一加、realme）：一直在用的主力平台，流畅好用。
+- **其他类原生 ROM**：Android 15 及以上、有 LSPosed 就能装。一大四小、横屏视频、工作场景这些核心功能可以用，桌面相关的动画不一定生效。目前已收到 Flyme、努比亚等机型可以完美使用的反馈，欢迎告诉我你的机型和效果。
+
+## 能做什么
+
+### 一大四小，点一下就换
+
+大窗是你正在用的应用，侧栏四个小窗是四个真实运行的应用，不是截图。点小窗，它和大窗原地对调。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/overview.gif" alt="底角斜滑打开工作台，再斜滑一次关闭" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/02-swap.gif" alt="点小窗与大窗互换" width="300">
 </p>
 
-## 功能
+### 多种打开方式
 
-### 一个大窗，四个小窗
+屏幕左右底角斜滑、双指上滑/下滑、状态栏左右横滑、控制中心开关，选一种顺手的。还支持配合 Tasker 这类工具自动打开、关闭工作台。
 
-大窗是你正在用的应用，侧栏四个小窗是四个真实运行中的应用，各自跑在独立的虚拟显示器上，不是截图。点一下小窗，它和大窗原地对调，画面等比缩放，不拉伸；长按拖动可以换位置，或者把应用退到后台。大窗只留应用顶部状态栏空白的一小段做间隔，其余空间给顶栏；手势导航时大窗和小窗底部留出手势区。隐藏状态栏的全屏应用整屏显示，不裁。
+玩游戏时不想误触，可以把应用加进手势黑名单：打开格窗，在「管理应用」里找到「手势黑名单」。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/swap.gif" alt="点小窗与大窗对调，再换回来" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/01-gestures.gif" alt="打开方式设置、底角斜滑和状态栏横滑" width="300">
 </p>
 
-### 小窗省电
+### 快捷关闭和暂停小窗应用
 
-侧边小窗的显示器按 30 帧刷新，小窗里看不出差别；应用换到大窗就回到满帧。不需要实时画面的应用（购物、外卖、阅读、文档之类）可以在设置的「暂停应用」里打开，或者长按小窗、不拖动直接松手，选「暂停应用」。打开后，它放进小窗、停手 2 秒就暂停：画面停在最后一帧，右上角出现暂停标记，应用不再运行；点一下小窗，它回到大窗，立即恢复。默认一个都不暂停；正在播放音视频、正在通话或在顶部宽窗里时也不会暂停。
+在任意一个小窗上往上滑，直接关掉里面的应用。长按小窗，可以选择暂停应用（省电、不卡顿）、保持实时（部分游戏、视频需要一直运行）或关闭应用。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/03-longpress.gif" alt="上滑关闭小窗应用，长按小窗选择暂停或关闭" width="300">
+</p>
+
+### 横屏视频置顶或全屏播放
+
+视频点全屏，放到屏幕顶部播放，下面照样换窗、回消息；也可以选在大窗里横过来播放，或者关闭工作台全屏看。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/04-video.gif" alt="横屏视频放到顶部播放，下面照常使用" width="300">
+</p>
 
 ### 常用应用栏
 
-顶部一排常用应用：设置里固定的排在最前面（数量不限），其余按最近七天的使用时间补齐到十个。点图标在大窗打开；长按拖到某个小窗，就在那个小窗打开。空小窗上的「＋」也能加应用：原来的大窗应用先收进这个小窗，回到桌面挑一个新应用放进大窗。
-
-不管从哪里打开应用（顶栏、通知、控制中心、状态栏、别的应用里的链接），它都进大窗，原来的大窗应用自动缩进一个空小窗；四个小窗都满时原应用退到后台。不想要可以在设置里关掉「打开新应用时缩小原应用」。
+点图标在大窗打开，拖进小窗就在小窗打开；装了分身的可以选开哪个。在任何应用里分享链接或文字，也能直接发到大窗或小窗。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/favorites.gif" alt="点常用栏图标在大窗打开，长按拖进小窗" width="300">
-</p>
-
-### 横屏视频自动上去
-
-大窗里的应用请求横屏（比如点了全屏播放），视频收进顶部的宽窗，默认 16:9 满宽，画面带黑边时按画面比例自动收窄，最多到 2.4:1。下面的大窗和另外三个小窗照常使用，宽窗里也能直接点暂停、拖进度；退出全屏，视频回到大窗。
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/video.gif" alt="视频点全屏后收进顶部宽窗，退出全屏回到大窗" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/05-favorites.gif" alt="点常用应用在大窗打开，拖进小窗在小窗打开" width="300">
 </p>
 
 ### 工作场景
 
-选好大窗和四个小窗的应用，点顶栏最右边的添加按钮，当前这一套就存成一个场景，可以选八个预设图标之一（工作、学习、游戏、影音、阅读、购物、出行、生活），也可以输入两个汉字或四个字母当按钮。点场景按钮一键换成那一套，当前布局正好是某个场景时它会高亮；长按可以换图标或删除。最多 6 个，满了加号自动隐藏。场景也能从设置页添加到桌面，点一下直接打开整套（ColorOS 首次需允许「创建桌面快捷方式」权限）。
+把大窗和四个小窗存成一组，点一下整套打开，也能把某个场景添加到桌面快捷方式。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/scenes.gif" alt="点加号存成场景并选图标，再点另一个场景切换" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/06-scenes.gif" alt="点场景按钮，整套应用一起打开" width="300">
 </p>
 
 ### 比价
 
-比价是默认场景之一。输入一次商品词，同时在几个外卖或购物应用里搜，每个应用一个窗口，结果并排对照：外卖查京东外卖、淘宝闪购、美团外卖，购物查拼多多、抖音商城、京东、淘宝。美团优先使用主应用，未安装时使用独立的美团外卖客户端。只帮你打开搜索结果，不抓价格、不下单、不付款。
-
-比价批量打开的应用会先保持运行，检测到这一批小窗都有内容且画面稳定后，再按「暂停应用」设置暂停。空白页、未识别的结果页或持续变化的页面会继续运行，避免结果尚未加载就被冻结。
+商品名输入一次，拼多多、抖音商城、京东、淘宝同时搜，各开一个窗口并排看；也支持外卖。只帮你打开搜索结果，不抓价格、不下单。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/compare.gif" alt="打开比价面板，选分组并输入商品词" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/07-compare.gif" alt="输入一次商品名，四个购物应用同时搜索" width="300">
 </p>
 
-### 付款和扫码
+### 付款与扫一扫
 
-另一个默认场景：微信扫一扫、微信收付款码、支付宝扫一扫、支付宝付款码，四个入口放在一个系统弹窗里。只负责打开对应页面，不读取账户，也不会替你确认付款。
+微信、支付宝的扫一扫和付款码放在一个面板里，一键打开。只负责打开对应页面，不读取账户，也不会替你确认付款。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/pay.png" alt="付款和扫码弹窗" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/08-pay.gif" alt="付款与扫一扫面板" width="300">
 </p>
 
-### 发到格窗
+### 外观
 
-在任何应用里分享链接或文字，选「发到格窗」，再选在大窗还是哪个小窗打开：链接用默认浏览器打开，其他文字用默认搜索。
+小窗放左边或右边、控制区放顶部或底部、小窗圆角或直角，都可以调；浅色深色跟随系统。
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/share.gif" alt="从浏览器分享链接，发到格窗的小窗 2" width="300">
-</p>
+## 免费和解锁
 
-### 浅色、深色，跟随系统
+大部分功能一直免费：一大四小、打开方式、常用应用、发到格窗、付款与扫一扫、2 个工作场景、外观设置、上滑关闭、自动化命令。
 
-工作台可以跟随系统深浅色，也可以固定浅色或深色；小窗放左边还是右边、控制区放顶部还是底部，都在设置里改，立即生效。
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/readme/theme.gif" alt="系统切换深色和浅色，工作台跟着变" width="300">
-</p>
+第一次打开工作台后，所有功能免费用 1 天。之后横屏视频留在工作台、第 3 个及以上的工作场景、比价、小窗暂停这几项需要解锁：¥6.6，一次付费，永久使用，换手机可以免费迁移一次。购买前请充分试用，购买后不退款。在格窗设置里点「解锁格窗」即可。
 
 ## 使用要求
 
-- ColorOS 16 和 17：在 OPPO、一加、realme 的机型上测试过。
-- 小米澎湃 OS（HyperOS）：已加入兼容支持；部分机型仍存在状态栏、通知下拉或特定应用触摸问题，正在排查。
-- 其他 ROM 需要自行适配，未经测试不保证兼容。
-- Root（KernelSU 等）、Zygisk 与 LSPosed（支持 libxposed 新 API）。
-- 本模块会修改 SystemUI、桌面和 system_server 的行为，请确保设备有可用的恢复手段。
+- Android 15 及以上，需要 Root 和 LSPosed（支持 libxposed 新 API）。
+- 本模块会修改系统界面、桌面和 system_server 的行为，刷之前请准备好救砖手段。
+- 以前装过 NeXtep（包名 `io.github.lujinxin.nextep`）的，先在 LSPosed 里停用并卸载，两个模块不能同时用。
 
 ## 安装
 
-1. 从 [Releases](https://github.com/yishisanren/NeXtep/releases) 下载 APK 并安装（包名 `io.github.yishisanren.panes`）。
-2. 在 LSPosed 中启用「格窗工作台」，勾选内置[作用域列表](https://github.com/yishisanren/NeXtep/blob/main/app/src/main/resources/META-INF/xposed/scope.list)里适用于本机的全部项目：SystemUI、系统框架、桌面、应用分身服务、负一屏。
-3. 小米澎湃 OS：作用域里勾选 SystemUI、系统框架和系统桌面，不需要其他模块。以前装过伴生模块 `NeXtepHomeShim` 的，在 LSPosed 里停用并卸载它。
-4. 如果以前装过 NeXtep（包名 `io.github.lujinxin.nextep`），先在 LSPosed 里停用并卸载它，两个模块不能同时钩住 SystemUI。
-5. 重启手机。
-6. 打开「格窗」，选常用应用，添加控制中心开关。
+1. 下载 APK 安装（包名 `io.github.yishisanren.panes`）。
+2. 在 LSPosed 里启用「格窗工作台」，作用域按机型勾选：
+   - 小米：SystemUI、系统框架、系统桌面、智能助理
+   - OPPO、一加、realme：SystemUI、系统框架、桌面、应用分身服务、负一屏
+   - 类原生：SystemUI、系统框架
+3. 重启手机。
+4. 打开「格窗」，选常用应用，选一种打开方式。
 
-## 打开与关闭
+## 下载和反馈
 
-- **底角手势**：单指从左下角向右上、或右下角向左上斜滑，打开；工作台里再斜滑一次，关闭。起点在距底边和侧边各 64 dp 的角落内，沿接近 45° 的斜线向内、向上各滑 24 dp 以上；直上滑或略偏的上滑（系统主页手势）和水平滑（系统返回手势）不会触发。
-- **控制中心开关**：设置页「打开方式 → 控制中心入口」添加，下拉控制中心点「格窗」切换。
-- **设置页**：「遇到问题 → 退出小窗模式」。
-- **Shell 命令**（自动化工具用，需 Root）：见 [docs/WORKBENCH.md](https://github.com/yishisanren/NeXtep/blob/main/docs/WORKBENCH.md#shell-命令)。
+- 下载：本页「版本」里的 APK，或 [夸克网盘](https://pan.quark.cn/s/bb615e3d0d68?pwd=X5gm#/list/share)
+- 反馈：[问题与建议问卷](https://my.feishu.cn/share/base/shrcn7gYOpCevm4vjtweE4Vyywh)
 
-## 设置
+## 致谢
 
-点桌面上的「格窗」图标进入，单页七组：
-
-| 分组 | 内容 |
-| --- | --- |
-| 常用应用 | 选择和排序常用栏的应用；切换时收起上一个应用 |
-| 工作场景 | 查看、删除场景，添加到桌面，恢复被删的默认场景 |
-| 布局 | 跟随系统／浅色／深色，小窗靠左／靠右，控制区顶部／底部 |
-| 暂停应用 | 选择在小窗里停手 2 秒后暂停的应用，附推荐名单 |
-| 打开方式 | 控制中心开关、底角手势 |
-| 隐私 | 最近任务里隐藏工作台应用 |
-| 遇到问题 | 导出诊断、退出小窗模式 |
-| 关于 | 版本、检查更新、署名 |
-
-## 隐私与限制
-
-- 3.0.5 改善 ColorOS 17 返回桌面的图标收拢，以及置顶视频返回大窗的画面衔接。应用迁移和重绘仍可能短暂停留，不保证所有应用全程无卡顿。
-- 部分 HyperOS 的状态栏、司机应用触摸及一加 Ace6 部分 ColorOS 16 桌面的关闭动画问题仍在排查，不在本版已修复范围内。
-- 工作台可以正常截图和录屏。
-- 打开「最近任务隐藏」后，工作台里的应用不出现在最近任务里，退出工作台即恢复。
-- 应用自己的安全保护（付款码、DRM 视频、企业策略等）照常生效，格窗不会解除。
-- 诊断导出保存模块最近 2000 条操作和状态记录（打开、关闭、切换、应用进出小窗等），不含搜索词、链接、账户和画面。
-- 横屏视频的识别依赖应用和系统：静音、没有媒体会话的竖屏播放器可能认不出来。
-
-## 构建
-
-见 [docs/BUILDING.md](https://github.com/yishisanren/NeXtep/blob/main/docs/BUILDING.md)。功能边界与真机验证情况见 [docs/WORKBENCH.md](https://github.com/yishisanren/NeXtep/blob/main/docs/WORKBENCH.md)，进程结构见 [docs/ARCHITECTURE.md](https://github.com/yishisanren/NeXtep/blob/main/docs/ARCHITECTURE.md)。
-
-## 交流群
-
-QQ 群「格窗交流群」（751247521）：[点击链接加入群聊](https://qun.qq.com/universal-share/share?ac=1&authKey=aR7P8LcImQYxngklpQ8M1bwzYn1Hnjh07fL%2F3N5qHnH9nKZAq%2B4VAaAniFqCVm3X&busi_data=eyJncm91cENvZGUiOiI3NTEyNDc1MjEiLCJ0b2tlbiI6InIvb1hMNTZiaWJ6WVhrajI3U1NTV1RROW9TeTNFUmpkejdIaitqNVFXQTFWNGlUU0JCVWhwM0QydDhMbmNtUk4iLCJ1aW4iOiIyNzU0MTE5MjkifQ%3D%3D&data=bsQls4gmP0EoHAFS89fiXTtwiAJULIASKHHTcbLpE6bYFgX7TtubfocaWiegnP_kAVhJ0PFqbayxD-8jJjF-oA&svctype=4&tempid=h5_group_info)。App 设置页的「关于」里也能一键加入。
-
-## 支持作者
-
-如果格窗帮到了你，可以用微信扫码请作者喝杯咖啡。App 设置页的「关于」里也有这张码。
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yishisanren/NeXtep/main/assets/donate-wechat.jpg" alt="微信赞赏收款码" width="240">
-</p>
-
-## 署名与许可证
-
-格窗基于 [lujinxin 的 NeXtep](https://github.com/lujinxin/NeXtep) 修改而来，NeXtep 致敬锤子科技 Smartisan OS 的 OneStep。本仓库沿用 [Apache License 2.0](https://github.com/yishisanren/NeXtep/blob/main/LICENSE)，第三方声明见 [THIRD_PARTY_NOTICES.md](https://github.com/yishisanren/NeXtep/blob/main/THIRD_PARTY_NOTICES.md)。
-
-Copyright 2026 lujinxin（NeXtep）；修改部分 Copyright 2026 yishisanren。
+感谢原作者 lujinxin：格窗是在他开源的 NeXtep 基础上改出来的，NeXtep 致敬锤子的 OneStep，没有 NeXtep 就没有格窗。
