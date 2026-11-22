@@ -4,116 +4,115 @@
 
 <h1 align="center">格窗工作台</h1>
 
-<p align="center">一个大窗做事，四个小窗随时切换。</p>
+<p align="center">一块屏幕，同时用好几个应用。</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/HyperOS-supported-FF6900?style=flat" alt="小米澎湃 OS">
-  <img src="https://img.shields.io/badge/ColorOS-16%20%7C%2017-1F5CDE?style=flat" alt="ColorOS 16 | 17">
-  <img src="https://img.shields.io/badge/AOSP--based-installable-3DDC84?style=flat" alt="类原生">
+  <img src="https://img.shields.io/badge/小米-supported-FF6900?style=flat" alt="小米">
+  <img src="https://img.shields.io/badge/OPPO-supported-1F5CDE?style=flat" alt="OPPO">
+  <img src="https://img.shields.io/badge/vivo-supported-415FFF?style=flat" alt="vivo">
+  <img src="https://img.shields.io/badge/荣耀-supported-00B3A4?style=flat" alt="荣耀">
   <img src="https://img.shields.io/badge/LSPosed-Required-C62828?style=flat" alt="需要 LSPosed">
 </p>
 
-格窗工作台是一个 LSPosed 模块，给手机原生桌面加一个侧边工作台：一个大窗做事，旁边四个小窗都是真实运行的应用，点一下就和大窗互换。不换桌面，不改主题，关掉工作台，手机就回到原样。
+格窗是一个 LSPosed 模块，把屏幕变成一张工作台：**一个大窗做事，旁边一列小窗候着**。小窗里是真实运行的应用，画面一直在动，点一下就和大窗互换。直板手机、折叠屏、平板，竖着拿、横着拿，都是同一套用法。
 
-## 支持的系统
+不换桌面、不改系统主题。关掉工作台，手机就回到原来的样子。
 
-- **小米澎湃 OS**：重点适配。大小窗交换、状态栏、桌面和最近任务、负一屏、横屏视频圆角都做了专门处理。
-- **ColorOS 16、17**（OPPO、一加、realme）：一直在用的主力平台，流畅好用。
-- **其他类原生 ROM**：Android 15 及以上、有 LSPosed 就能装。一大四小、横屏视频、工作场景这些核心功能可以用，桌面相关的动画不一定生效。目前已收到 Flyme、努比亚等机型可以完美使用的反馈，欢迎告诉我你的机型和效果。
-
-系统移植版和魔改版随缘使用，有问题别反馈，不修，不解释。
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-01-open.gif" alt="底角斜滑打开工作台" width="300">
+</p>
 
 ## 能做什么
 
-### 一大四小，点一下就换
+### 一套排版，适配所有屏幕
 
-大窗是你正在用的应用，侧栏四个小窗是四个真实运行的应用，不是截图。点小窗，它和大窗原地对调。
+直板手机、小折叠、大折叠、阔折叠、平板，统一成「顶部控制区 + 大窗 + 小窗列」，窗口按屏幕比例等比缩放，折叠屏、平板横着拿也是同一套用法。
+
+
+### 小窗最多 12 个，随加随删
+
+小窗列底部点「＋ 增加小窗」，多一格。在小窗里往屏幕中间滑，关掉应用、小窗留空；在空小窗上再滑一次，这一格就删掉。点小窗，它和大窗原地互换。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/02-swap.gif" alt="点小窗与大窗互换" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-03-panes.gif" alt="增加小窗、删除空小窗" width="300">
 </p>
 
-### 多种打开方式
-
-屏幕左右底角斜滑、双指上滑/下滑、状态栏左右横滑、控制中心开关，选一种顺手的。还支持配合 Tasker 这类工具自动打开、关闭工作台。
-
-玩游戏时不想误触，可以把应用加进手势黑名单：打开格窗，在「管理应用」里找到「手势黑名单」。
-
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/01-gestures.gif" alt="打开方式设置、底角斜滑和状态栏横滑" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-02-swap.gif" alt="点小窗与大窗互换" width="300">
 </p>
 
-### 快捷关闭和暂停小窗应用
+### 视频和游戏置顶：看到什么，置顶什么
 
-在任意一个小窗上往上滑，直接关掉里面的应用。长按小窗，可以选择暂停应用（省电、不卡顿）、保持实时（部分游戏、视频需要一直运行）或关闭应用。
+大窗里在播视频或在玩游戏时，控制区出现置顶按钮。点一下，大窗里的画面原样挪到置顶区，下面的大窗、小窗照常用。
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/03-longpress.gif" alt="上滑关闭小窗应用，长按小窗选择暂停或关闭" width="300">
-</p>
-
-### 横屏视频和游戏
-
-视频或游戏点全屏，默认在大窗里横过来播放，旁边的小窗照常用；也可以放到屏幕顶部置顶播放，下面照样换窗、回消息；或者关闭工作台全屏看。
+- 竖着拿，置顶区在屏幕顶部；横着拿（折叠屏展开、平板），置顶区在左侧。
+- 画面按原比例完整放进置顶区，不裁切、不拉伸。竖着拿时，全屏的横屏视频置顶后上下不留黑边。
+- 页面里的小播放器、横屏全屏、竖版全屏视频、横着玩和竖着玩的游戏，都能置顶。想只看视频画面，先在大窗里点全屏，再点置顶。
+- 取消置顶：点「取消置顶」，画面原样回到大窗；或在置顶区那一侧的屏幕边缘往里划。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/04-video.gif" alt="横屏视频放到顶部播放，下面照常使用" width="300">
-</p>
-
-### 常用应用栏
-
-点图标在大窗打开，拖进小窗就在小窗打开；装了分身的可以选开哪个。在任何应用里分享链接或文字，也能直接发到大窗或小窗。
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/05-favorites.gif" alt="点常用应用在大窗打开，拖进小窗在小窗打开" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-04-pin.gif" alt="抖音置顶到顶部，下面用京东，再取消置顶" width="300">
 </p>
 
 ### 工作场景
 
-把大窗和四个小窗存成一组，点一下整套打开，也能把某个场景添加到桌面快捷方式。
+把大窗和小窗里的一套应用存成场景，比如「工作」放钉钉、飞书、邮箱，「追剧」放视频和聊天。场景可以放进常用应用栏，点一下整套打开，需要几个小窗就自动补几个。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/06-scenes.gif" alt="点场景按钮，整套应用一起打开" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-05-scenes.gif" alt="点场景，整套应用一起打开" width="300">
 </p>
 
-### 比价
+### 新应用自动进大窗
 
-商品名输入一次，拼多多、抖音商城、京东、淘宝同时搜，各开一个窗口并排看；也支持外卖。只帮你打开搜索结果，不抓价格、不下单。
+不管从通知、链接还是控制中心打开，应用都进大窗，原来的应用自动挪进空小窗，不会被关掉。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/07-compare.gif" alt="输入一次商品名，四个购物应用同时搜索" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-06-auto-main.gif" alt="从链接打开应用进大窗，原来的应用挪进小窗" width="300">
 </p>
 
-### 付款与扫一扫
+### 更多
 
-微信、支付宝的扫一扫和付款码放在一个面板里，一键打开。只负责打开对应页面，不读取账户，也不会替你确认付款。
+| 功能 | 怎么用 |
+|---|---|
+| 常用应用栏 | 控制区一排常用应用和场景，点一下在大窗打开，拖到小窗就在小窗打开；分身应用可选 |
+| 多种打开方式 | 左下角或右下角斜滑、双指上下滑、状态栏横滑，或控制中心「格窗」开关；游戏可设为手势不生效 |
+| 拖文件进小窗 | 在大窗长按图片或文件，拖到小窗上，直接落进它当前的页面，比如正开着的微信聊天 |
+| 付款与扫一扫 | 微信、支付宝的扫一扫和付款码，放在常用应用栏一点就开；只打开对应页面，不读取账户 |
+| 比价 | 商品名输一次，几个外卖或购物应用同时搜，结果并排对照；只打开搜索结果，不抓价格、不下单 |
+| 沉浸模式 | 大窗放大居中，四周模糊壁纸，小窗收成底部 Dock |
+| 顶栏标题 | 时间、番茄钟、下一个日程、温度、充电功率、网速，点一下切到下一组 |
+| 省电 | 小窗按 30 帧刷新，换到大窗立刻满帧；不常用的小窗可设「应用休眠」 |
+| 自动化 | 支持 Tasker、MacroDroid，把工作台绑到侧键、悬浮球或定时任务 |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/08-pay.gif" alt="付款与扫一扫面板" width="300">
+  <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.yishisanren.panes/main/assets/v4-07-compare.gif" alt="比价：输入一次，几家并排出结果" width="300">
 </p>
-
-### 外观
-
-小窗放左边或右边、控制区放顶部或底部、小窗圆角或直角，都可以调；浅色深色跟随系统。
 
 ## 免费和解锁
 
-大部分功能一直免费：一大四小、打开方式、大窗内横屏播放视频和游戏、常用应用、发到格窗、付款与扫一扫、2 个工作场景、外观设置、上滑关闭、自动化命令。
+第一次打开工作台后，所有功能免费用 1 天。
 
-第一次打开工作台后，所有功能免费用 1 天。之后横屏视频和游戏置顶播放、顶栏标题信息组、第 3 个及以上的工作场景、比价、小窗暂停这几项需要解锁：¥6.6，一次付费，永久使用，换手机可以免费迁移一次。购买前请充分试用，购买后不退款。在格窗设置里点「解锁格窗」即可。
+**一直免费**：大窗加最多 4 个小窗、打开方式、常用应用栏、拖文件、付款与扫一扫、2 个工作场景、自动化。
+
+**解锁后多得到**：视频和游戏置顶、5～12 个小窗、更多工作场景、沉浸模式、多组顶栏标题、比价、应用休眠。
+
+在格窗设置里点「解锁格窗」即可。
+
+## 支持的系统
+
+支持主流安卓操作系统，包含小米、OPPO、vivo、荣耀以及其他安卓类原生操作系统等（Android 15 及以上）。
+
+系统移植版和魔改版随缘使用，有问题不修。
 
 ## 使用要求
 
-- Android 15 及以上，需要 Root 和 LSPosed（支持 libxposed 新 API）。
+- 已 Root，装好 Zygisk 和 LSPosed（支持 libxposed 新 API）。
 - 本模块会修改系统界面、桌面和 system_server 的行为，刷之前请准备好救砖手段。
-- 以前装过 NeXtep（包名 `io.github.lujinxin.nextep`）的，先在 LSPosed 里停用并卸载，两个模块不能同时用。
 
 ## 安装
 
 1. 下载 APK 安装（包名 `io.github.yishisanren.panes`）。
-2. 在 LSPosed 里启用「格窗工作台」，作用域按机型勾选：
-   - 小米：SystemUI、系统框架、系统桌面、智能助理
-   - OPPO、一加、realme：SystemUI、系统框架、桌面、应用分身服务、负一屏
-   - 类原生：SystemUI、系统框架
+2. 在 LSPosed 里启用「格窗工作台」，勾选推荐作用域（SystemUI、系统框架，以及你手机的桌面）。
 3. 重启手机。
 4. 打开「格窗」，选常用应用，选一种打开方式。
 
