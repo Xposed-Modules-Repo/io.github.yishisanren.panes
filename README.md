@@ -98,7 +98,7 @@ After you first open the workbench, every feature is free for 1 day.
 
 ## Supported systems
 
-Android 15 and newer. Tested on:
+Android 14 and newer. Tested on:
 
 - Xiaomi HyperOS
 - ColorOS and OxygenOS (OPPO, OnePlus, realme)
@@ -222,7 +222,7 @@ Thanks to lujinxin: Panes is built on his open-source NeXtep, itself a tribute t
 
 ## 支持的系统
 
-Android 15 及以上。实测支持：小米 HyperOS、ColorOS（OPPO、一加、真我）、vivo OriginOS、荣耀 MagicOS、三星 One UI、Google Pixel 及其他类原生系统。
+Android 14 及以上。实测支持：小米 HyperOS、ColorOS（OPPO、一加、真我）、vivo OriginOS、荣耀 MagicOS、三星 One UI、Google Pixel 及其他类原生系统。
 
 系统移植版和魔改版随缘使用，有问题不修。
 
